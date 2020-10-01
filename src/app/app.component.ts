@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UploadService } from './upload.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'upload-file-s3';
+  constructor(private uploadFileService: UploadService){
+
+  }
+
+  files: any = [];
+
+  uploadFile(file) {
+    console.log("event",file[0]);
+    this.uploadFileService.uploadFile(file[0])
+
+  }
+  deleteAttachment(index) {
+    this.files.splice(index, 1)
+  }
+
 }
